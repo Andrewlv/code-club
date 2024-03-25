@@ -1,0 +1,35 @@
+server:
+  port: 3000
+spring:
+  datasource:
+    username: root
+    password: fbcDThT83kvmgsxdyFo+sm8uZuuPqLnmWW+bDFGH414DYvaleXLowllQZDBBaNy2GkPIJQFL6zy0F61t4ETGFg==
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://36.139.122.101:3306/code-club?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 20
+      min-idle: 20
+      max-active: 100
+      max-wait: 60000
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: 123456
+      filter:
+        stat:
+          enabled: true
+          slow-sql-millis: 2000
+          log-slow-sql: true
+        wall:
+          enabled: true
+        config:
+          enabled: true
+      connection-properties: config.decrypt=true;config.decrypt.key=${publicKey};
+publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJptEHn4TVCHs9AJsTLzMJLYAIgd07cgVT6jXloJL50rkgo+VEBdJu5wm3n9spHnKCbLsPK6F1ZQ1GxfDf4McZcCAwEAAQ==
+logging:
+  config: classpath:log4j2-spring.xml
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
