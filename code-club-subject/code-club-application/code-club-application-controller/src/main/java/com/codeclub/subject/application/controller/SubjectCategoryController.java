@@ -25,6 +25,12 @@ public class SubjectCategoryController {
     @Resource
     private SubjectCategoryDomainService subjectCategoryDomainService;
 
+    /**
+     * 新增分类
+     *
+     * @param subjectCategoryDTO
+     * @return
+     */
     @PostMapping("/add")
     public Result<Boolean> add(@RequestBody SubjectCategoryDTO subjectCategoryDTO) {
         try {
