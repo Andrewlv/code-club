@@ -21,7 +21,6 @@ public interface SubjectMappingService {
     SubjectMapping queryById(Long id);
 
 
-
     /**
      * 新增数据
      *
@@ -46,5 +45,18 @@ public interface SubjectMappingService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 查询标签id
+     *
+     * @param subjectMapping
+     * @return
+     */
     List<SubjectMapping> queryLabelId(SubjectMapping subjectMapping);
+
+    /**
+     * 批量插入
+     *
+     * @param mappingList
+     */
+    void batchInsert(List<SubjectMapping> mappingList);
 }
