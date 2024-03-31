@@ -4,11 +4,9 @@ import com.codeclub.subject.infra.basic.entity.SubjectRadio;
 import com.codeclub.subject.infra.basic.mapper.SubjectRadioDao;
 import com.codeclub.subject.infra.basic.service.SubjectRadioService;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 单选题信息表(SubjectRadio)表服务实现类
@@ -66,5 +64,15 @@ public class SubjectRadioServiceImpl implements SubjectRadioService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectRadioDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public void batchInsert(List<SubjectRadio> subjectRadioList) {
+        subjectRadioDao.insertBatch(subjectRadioList);
+    }
+
+    @Override
+    public List<SubjectRadio> queryByCondition(SubjectRadio subjectRadio) {
+        return subjectRadioDao.queryAllByLimit(subjectRadio);
     }
 }

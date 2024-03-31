@@ -1,5 +1,6 @@
 package com.codeclub.subject.application.dto;
 
+import com.codeclub.subject.common.entity.PageInfo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,7 +11,7 @@ import java.util.List;
  * 题目dto
  */
 @Data
-public class SubjectInfoDTO implements Serializable {
+public class SubjectInfoDTO extends PageInfo implements Serializable {
     private static final long serialVersionUID = -97158986872612313L;
     /**
      * 主键
@@ -55,5 +56,11 @@ public class SubjectInfoDTO implements Serializable {
      * 答案选项
      */
     private List<SubjectAnswerDTO> optionList;
+
+    private Long categoryId;
+
+    private Long labelId;
+
+    private List<String> labelNameList;
 }
 

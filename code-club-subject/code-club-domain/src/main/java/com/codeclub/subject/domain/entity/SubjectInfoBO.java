@@ -1,5 +1,6 @@
 package com.codeclub.subject.domain.entity;
 
+import com.codeclub.subject.common.entity.PageInfo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -9,7 +10,7 @@ import java.util.List;
  * 题目bo
  */
 @Data
-public class SubjectInfoBO implements Serializable {
+public class SubjectInfoBO extends PageInfo implements Serializable {
     private static final long serialVersionUID = -97158986872612313L;
     /**
      * 主键
@@ -54,5 +55,11 @@ public class SubjectInfoBO implements Serializable {
      * 答案选项
      */
     private List<SubjectAnswerBO> optionList;
+
+    private Long categoryId;
+
+    private Long labelId;
+
+    private List<String> labelNameList;
 }
 

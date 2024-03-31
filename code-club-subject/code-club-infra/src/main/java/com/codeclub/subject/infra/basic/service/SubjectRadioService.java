@@ -2,6 +2,8 @@ package com.codeclub.subject.infra.basic.service;
 
 import com.codeclub.subject.infra.basic.entity.SubjectRadio;
 
+import java.util.List;
+
 /**
  * 单选题信息表(SubjectRadio)表服务接口
  *
@@ -17,7 +19,6 @@ public interface SubjectRadioService {
      * @return 实例对象
      */
     SubjectRadio queryById(Long id);
-
 
 
     /**
@@ -44,4 +45,12 @@ public interface SubjectRadioService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 批量插入
+     *
+     * @param subjectRadioList
+     */
+    void batchInsert(List<SubjectRadio> subjectRadioList);
+
+    List<SubjectRadio> queryByCondition(SubjectRadio subjectRadio);
 }

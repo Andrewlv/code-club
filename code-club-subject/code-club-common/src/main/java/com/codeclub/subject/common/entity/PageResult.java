@@ -1,12 +1,16 @@
 package com.codeclub.subject.common.entity;
 
+import lombok.Data;
+
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
 /**
  * 分页返回实体
  */
-public class PageResult<T> {
+@Data
+public class PageResult<T> implements Serializable {
 
     /**
      * 当前页码
@@ -56,14 +60,6 @@ public class PageResult<T> {
         }
         start = (pageSize > 0 ? (pageNo - 1) * pageSize : 0) + 1;
         end = (start - 1 + pageSize * (pageNo > 0 ? 1 : 0));
-    }
-
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public void setPageNo(Integer pageNo) {
-        this.pageNo = pageNo;
     }
 
 }

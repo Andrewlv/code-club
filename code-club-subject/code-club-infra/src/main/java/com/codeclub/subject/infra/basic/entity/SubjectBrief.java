@@ -44,7 +44,5 @@ public class SubjectBrief implements Serializable {
     private Date updateTime;
 
     private Integer isDeleted;
-
-
 }
 

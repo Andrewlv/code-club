@@ -4,9 +4,6 @@ import com.codeclub.subject.infra.basic.entity.SubjectBrief;
 import com.codeclub.subject.infra.basic.mapper.SubjectBriefDao;
 import com.codeclub.subject.infra.basic.service.SubjectBriefService;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
 
@@ -41,7 +38,7 @@ public class SubjectBriefServiceImpl implements SubjectBriefService {
      */
     @Override
     public SubjectBrief insert(SubjectBrief subjectBrief) {
-        this.subjectBriefDao.insert(subjectBrief);
+        subjectBriefDao.insert(subjectBrief);
         return subjectBrief;
     }
 
@@ -66,5 +63,10 @@ public class SubjectBriefServiceImpl implements SubjectBriefService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectBriefDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public SubjectBrief queryByCondition(SubjectBrief subjectBrief) {
+        return subjectBriefDao.queryAllByLimit(subjectBrief);
     }
 }

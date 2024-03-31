@@ -4,11 +4,9 @@ import com.codeclub.subject.infra.basic.entity.SubjectMultiple;
 import com.codeclub.subject.infra.basic.mapper.SubjectMultipleDao;
 import com.codeclub.subject.infra.basic.service.SubjectMultipleService;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 多选题信息表(SubjectMultiple)表服务实现类
@@ -66,5 +64,15 @@ public class SubjectMultipleServiceImpl implements SubjectMultipleService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectMultipleDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public void batchInsert(List<SubjectMultiple> subjectMultipleList) {
+        subjectMultipleDao.insertBatch(subjectMultipleList);
+    }
+
+    @Override
+    public List<SubjectMultiple> queryByCondition(SubjectMultiple subjectMultiple) {
+        return subjectMultipleDao.queryAllByLimit(subjectMultiple);
     }
 }

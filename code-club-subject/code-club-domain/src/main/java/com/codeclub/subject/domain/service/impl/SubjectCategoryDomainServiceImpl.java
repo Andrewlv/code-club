@@ -1,7 +1,6 @@
 package com.codeclub.subject.domain.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.codeclub.subject.common.enums.CategoryTypeEnum;
 import com.codeclub.subject.common.enums.IsDeletedFlagEnum;
 import com.codeclub.subject.domain.convert.SubjectCategoryConverter;
 import com.codeclub.subject.domain.entity.SubjectCategoryBO;

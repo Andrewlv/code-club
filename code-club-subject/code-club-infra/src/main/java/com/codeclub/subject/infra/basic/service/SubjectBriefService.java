@@ -19,7 +19,6 @@ public interface SubjectBriefService {
     SubjectBrief queryById(Long id);
 
 
-
     /**
      * 新增数据
      *
@@ -44,4 +43,11 @@ public interface SubjectBriefService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 条件查询
+     *
+     * @param subjectBrief
+     * @return
+     */
+    SubjectBrief queryByCondition(SubjectBrief subjectBrief);
 }

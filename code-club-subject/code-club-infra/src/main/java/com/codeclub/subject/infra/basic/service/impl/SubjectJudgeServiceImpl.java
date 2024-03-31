@@ -4,11 +4,9 @@ import com.codeclub.subject.infra.basic.entity.SubjectJudge;
 import com.codeclub.subject.infra.basic.mapper.SubjectJudgeDao;
 import com.codeclub.subject.infra.basic.service.SubjectJudgeService;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 判断题(SubjectJudge)表服务实现类
@@ -41,7 +39,7 @@ public class SubjectJudgeServiceImpl implements SubjectJudgeService {
      */
     @Override
     public SubjectJudge insert(SubjectJudge subjectJudge) {
-        this.subjectJudgeDao.insert(subjectJudge);
+        subjectJudgeDao.insert(subjectJudge);
         return subjectJudge;
     }
 
@@ -66,5 +64,10 @@ public class SubjectJudgeServiceImpl implements SubjectJudgeService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectJudgeDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<SubjectJudge> queryByCondition(SubjectJudge subjectJudge) {
+        return subjectJudgeDao.queryAllByLimit(subjectJudge);
     }
 }
