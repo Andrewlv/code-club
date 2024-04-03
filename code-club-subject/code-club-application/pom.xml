@@ -12,12 +12,6 @@
     <artifactId>code-club-application</artifactId>
     <packaging>pom</packaging>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <modules>
         <module>code-club-application-controller</module>
         <module>code-club-application-mq</module>

@@ -5,9 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.codeclub</groupId>
-        <artifactId>code-club-subject</artifactId>
+        <artifactId>code-club-application</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>code-club-application-job</artifactId>
