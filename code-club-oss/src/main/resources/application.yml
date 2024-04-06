@@ -4,19 +4,3 @@ minio:
   url: http://36.139.122.101:9000
   accessKey: minioadmin
   secretKey: minioadmin
-storage:
-  service:
-    type: aliyun
-nacos:
-  config:
-    access-key: nacos
-    secret-key: nacos
-    data-id: code-club-oss
-    group: DEFAULT_GROUP
-    type: yaml
-    server-addr: http://36.139.122.101:8848
-    auto-refresh: true
-    remote-first: true
-    bootstrap:
-      enable: true
-

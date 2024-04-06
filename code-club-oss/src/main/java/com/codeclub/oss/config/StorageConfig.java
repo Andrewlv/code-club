@@ -5,6 +5,7 @@ import com.codeclub.oss.adapter.AliStorageAdapter;
 import com.codeclub.oss.adapter.MinioStorageAdapter;
 import com.codeclub.oss.adapter.StorageAdapter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,18 +13,21 @@ import org.springframework.context.annotation.Configuration;
  * 文件存储config
  */
 @Configuration
+@RefreshScope
 public class StorageConfig {
 
-    @NacosValue(value = "${storage.service.type}", autoRefreshed = true)
+
+    @Value("${storage.service.type}")
     private String storageType;
 
     @Bean
-    public StorageAdapter storageAdapter(){
+    @RefreshScope
+    public StorageAdapter storageAdapter() {
         if ("minio".equals(storageType)) {
             return new MinioStorageAdapter();
         } else if ("aliyun".equals(storageType)) {
             return new AliStorageAdapter();
-        }else {
+        } else {
             throw new IllegalArgumentException("未找到对应的文件存储适配器");
         }
     }

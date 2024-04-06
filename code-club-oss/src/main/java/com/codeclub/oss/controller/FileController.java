@@ -1,7 +1,7 @@
 package com.codeclub.oss.controller;
 
-import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.codeclub.oss.service.FileService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +17,7 @@ public class FileController {
     @Resource
     private FileService fileService;
 
-    @NacosValue(value = "${storage.service.type}", autoRefreshed = true)
+    @Value("${storage.service.type}")
     private String storageType;
 
     @RequestMapping("/testGetAllBucket")
@@ -28,6 +28,7 @@ public class FileController {
 
     @RequestMapping("/testNacos")
     public String testNacos() throws Exception {
+        System.out.println(storageType);
         return storageType;
     }
 }
