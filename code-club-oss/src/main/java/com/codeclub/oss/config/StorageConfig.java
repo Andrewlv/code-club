@@ -1,5 +1,6 @@
 package com.codeclub.oss.config;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.codeclub.oss.adapter.AliStorageAdapter;
 import com.codeclub.oss.adapter.MinioStorageAdapter;
 import com.codeclub.oss.adapter.StorageAdapter;
@@ -13,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class StorageConfig {
 
-    @Value("${storage.service.type}")
+    @NacosValue(value = "${storage.service.type}", autoRefreshed = true)
     private String storageType;
 
     @Bean
