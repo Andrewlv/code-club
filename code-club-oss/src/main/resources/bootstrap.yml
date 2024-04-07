@@ -1,6 +1,6 @@
 spring:
   application:
-    name: code-club-oss-dev
+    name: code-club-oss
   profiles:
     active: dev
   cloud:
@@ -11,3 +11,6 @@ spring:
         group: DEFAULT_GROUP
         namespace:
         file-extension: yaml
+      discovery:
+        enabled: true
+        server-addr: 36.139.122.101:8848
