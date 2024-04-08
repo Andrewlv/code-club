@@ -10,4 +10,16 @@ spring:
             - Path=/oss/**
           filters:
             - StripPrefix=1
+        - id: auth
+          uri: lb://code-club-auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+        - id: subject
+          uri: lb://code-club-subject
+          predicates:
+            - Path=/subject/**
+          filters:
+            - StripPrefix=1
 
