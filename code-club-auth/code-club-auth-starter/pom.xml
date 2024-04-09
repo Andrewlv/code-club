@@ -83,6 +83,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <build>
         <finalName>${project.artifactId}</finalName>
         <!--打包成jar包时的名字-->
