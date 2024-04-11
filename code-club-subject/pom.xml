@@ -11,11 +11,11 @@
     <description>code-club-题目领域服务</description>
 
     <modules>
-        <module>code-club-starter</module>
-        <module>code-club-application</module>
-        <module>code-club-common</module>
-        <module>code-club-domain</module>
-        <module>code-club-infra</module>
+        <module>code-club-subject-starter</module>
+        <module>code-club-subject-application</module>
+        <module>code-club-subject-common</module>
+        <module>code-club-subject-domain</module>
+        <module>code-club-subject-infra</module>
     </modules>
 
     <dependencies>
