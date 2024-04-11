@@ -25,6 +25,26 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         authUser.setStatus(AuthUserStatusEnum.OPEN.getCode());
         authUser.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
         Integer count = authUserService.insert(authUser);
+        // 建立角色关联
+        // 把当前用户的角色和权限都存入redis里
+        return count > 0;
+    }
+
+    @Override
+    public Boolean update(AuthUserBO authUserBO) {
+        AuthUser authUser = AuthUserBOConverter.INSTANCE.convertBOToEntity(authUserBO);
+        Integer count = authUserService.update(authUser);
+        // 有任何的更新，都要与缓存进行同步修改
+        return count > 0;
+    }
+
+    @Override
+    public Boolean delete(AuthUserBO authUserBO) {
+        AuthUser authUser = new AuthUser();
+        authUser.setId(authUserBO.getId());
+        authUser.setIsDeleted(IsDeletedFlagEnum.DELETED.getCode());
+        Integer count = authUserService.update(authUser);
+        // 有任何的更新，都要与缓存进行同步修改
         return count > 0;
     }
 }
