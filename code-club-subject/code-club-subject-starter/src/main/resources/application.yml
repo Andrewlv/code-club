@@ -5,7 +5,7 @@ spring:
     username: root
     password: fbcDThT83kvmgsxdyFo+sm8uZuuPqLnmWW+bDFGH414DYvaleXLowllQZDBBaNy2GkPIJQFL6zy0F61t4ETGFg==
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://36.139.122.101:3306/code-club?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://117.72.45.93:3306/code-club?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 20
@@ -16,7 +16,7 @@ spring:
         enabled: true
         url-pattern: /druid/*
         login-username: admin
-        login-password: 123456
+        login-password: 555888ljq
       filter:
         stat:
           enabled: true
