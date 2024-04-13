@@ -1,5 +1,6 @@
 package com.codeclub.auth.domain.service.impl;
 
+import cn.dev33.satoken.secure.SaSecureUtil;
 import com.codeclub.auth.common.enums.AuthUserStatusEnum;
 import com.codeclub.auth.common.enums.IsDeletedFlagEnum;
 import com.codeclub.auth.domain.convert.AuthUserBOConverter;
@@ -19,9 +20,12 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
     @Resource
     private AuthUserService authUserService;
 
+    private String salt = "chicken";
+
     @Override
     public Boolean register(AuthUserBO authUserBO) {
         AuthUser authUser = AuthUserBOConverter.INSTANCE.convertBOToEntity(authUserBO);
+        authUser.setPassword(SaSecureUtil.md5BySalt(authUser.getPassword(), salt));
         authUser.setStatus(AuthUserStatusEnum.OPEN.getCode());
         authUser.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
         Integer count = authUserService.insert(authUser);
