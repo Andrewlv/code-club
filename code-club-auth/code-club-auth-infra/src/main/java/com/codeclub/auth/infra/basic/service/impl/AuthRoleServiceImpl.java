@@ -32,18 +32,6 @@ public class AuthRoleServiceImpl implements AuthRoleService {
         return this.authRoleDao.queryById(id);
     }
 
-    /**
-     * 分页查询
-     *
-     * @param authRole    筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<AuthRole> queryByPage(AuthRole authRole, PageRequest pageRequest) {
-        long total = this.authRoleDao.count(authRole);
-        return new PageImpl<>(this.authRoleDao.queryAllByLimit(authRole, pageRequest), pageRequest, total);
-    }
 
     /**
      * 新增数据
@@ -76,5 +64,10 @@ public class AuthRoleServiceImpl implements AuthRoleService {
     @Override
     public boolean deleteById(Long id) {
         return this.authRoleDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public AuthRole queryByCondition(AuthRole authRole) {
+        return authRoleDao.queryAllByLimit(authRole);
     }
 }
