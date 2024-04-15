@@ -110,7 +110,7 @@ public class UserController {
     @RequestMapping("doLogin")
     public SaResult doLogin(String username, String password) {
         if ("zhang".equals(username) && "123456".equals(password)) {
-            StpUtil.login(10001);
+            StpUtil.login("鸡翅");
             SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
             return SaResult.data(tokenInfo);
         }

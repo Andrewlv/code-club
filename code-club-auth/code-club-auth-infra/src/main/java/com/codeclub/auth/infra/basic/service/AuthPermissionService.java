@@ -4,6 +4,8 @@ import com.codeclub.auth.infra.basic.entity.AuthPermission;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
+
 /**
  * (AuthPermission)表服务接口
  *
@@ -45,4 +47,5 @@ public interface AuthPermissionService {
      */
     boolean deleteById(Long id);
 
+    List<AuthPermission> queryByPermissionIdList(List<Long> permissionIdList);
 }
