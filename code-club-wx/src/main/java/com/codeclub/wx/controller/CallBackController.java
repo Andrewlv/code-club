@@ -76,15 +76,4 @@ public class CallBackController {
         return replyContent;
     }
 
-//    String msg = "<xml>\n" +
-//            "  <ToUserName><![CDATA[" + fromUserName + "]]></ToUserName>\n" +
-//            "  <FromUserName><![CDATA[" + toUserName + "]]></FromUserName>\n" +
-//            "  <CreateTime>1348831860</CreateTime>\n" +
-//            "  <MsgType><![CDATA[text]]></MsgType>\n" +
-//            "  <Content><![CDATA[你好，我是小黑子]]></Content>\n" +
-//            "  <MsgId>1234567890123456</MsgId>\n" +
-//            "  <MsgDataId>xxxx</MsgDataId>\n" +
-//            "  <Idx>xxxx</Idx>\n" +
-//            "</xml>";
-
 }

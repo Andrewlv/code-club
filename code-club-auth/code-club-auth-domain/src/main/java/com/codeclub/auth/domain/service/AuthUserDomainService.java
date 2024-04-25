@@ -1,5 +1,6 @@
 package com.codeclub.auth.domain.service;
 
+import cn.dev33.satoken.stp.SaTokenInfo;
 import com.codeclub.auth.domain.entity.AuthUserBO;
 
 /**
@@ -30,4 +31,6 @@ public interface AuthUserDomainService {
      * @return
      */
     Boolean delete(AuthUserBO authUserBO);
+
+    SaTokenInfo doLogin(String validCode);
 }

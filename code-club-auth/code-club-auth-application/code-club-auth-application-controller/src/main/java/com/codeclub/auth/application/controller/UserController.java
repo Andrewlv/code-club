@@ -108,13 +108,14 @@ public class UserController {
 
 
     @RequestMapping("doLogin")
-    public SaResult doLogin(String username, String password) {
-        if ("zhang".equals(username) && "123456".equals(password)) {
-            StpUtil.login("鸡翅");
-            SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
-            return SaResult.data(tokenInfo);
+    public Result<SaTokenInfo> doLogin(String validCode) {
+        try {
+            Preconditions.checkArgument(!StringUtils.isBlank(validCode), "验证码不能为空！");
+            return Result.ok(authUserDomainService.doLogin(validCode));
+        } catch (Exception e) {
+            log.error("UserController.doLogin.error:{}", e.getMessage(), e);
+            return Result.fail("用户登陆失败");
         }
-        return SaResult.error("登录失败");
     }
 
     @RequestMapping("isLogin")
