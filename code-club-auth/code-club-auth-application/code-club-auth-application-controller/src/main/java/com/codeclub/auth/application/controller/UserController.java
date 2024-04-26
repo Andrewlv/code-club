@@ -72,6 +72,28 @@ public class UserController {
     }
 
     /**
+     * 获取用户信息
+     *
+     * @param authUserDTO
+     * @return
+     */
+    @RequestMapping("getUserInfo")
+    public Result<AuthUserDTO> getUserInfo(@RequestBody AuthUserDTO authUserDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("UserController.getUserInfo.dto:{}", JSON.toJSONString(authUserDTO));
+            }
+            Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getUserName()), "用户名不能为空");
+            AuthUserBO authUserBO = AuthUserDTOConverter.INSTANCE.convertDTOToBO(authUserDTO);
+            AuthUserBO userInfo = authUserDomainService.getUserInfo(authUserBO);
+            return Result.ok(AuthUserDTOConverter.INSTANCE.convertBOToDTO(userInfo));
+        } catch (Exception e) {
+            log.error("UserController.getUserInfo.error:{}", e.getMessage(), e);
+            return Result.fail("获取用户信息失败");
+        }
+    }
+
+    /**
      * 删除用户
      *
      * @param authUserDTO

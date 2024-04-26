@@ -2,6 +2,8 @@ package com.codeclub.auth.infra.basic.service;
 
 import com.codeclub.auth.infra.basic.entity.AuthUser;
 
+import java.util.List;
+
 /**
  * 用户信息表(AuthUser)表服务接口
  *
@@ -43,4 +45,11 @@ public interface AuthUserService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 根据条件查询数量
+     *
+     * @param authUser
+     * @return
+     */
+    List<AuthUser> queryByCondition(AuthUser authUser);
 }
