@@ -4,6 +4,7 @@ import com.codeclub.oss.service.FileService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -30,5 +31,19 @@ public class FileController {
     public String testNacos() throws Exception {
         System.out.println(storageType);
         return storageType;
+    }
+
+    /**
+     * 上传文件
+     *
+     * @param uploadFile
+     * @param bucket
+     * @param objectName
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/upload")
+    public String upload(MultipartFile uploadFile, String bucket, String objectName) throws Exception {
+        return fileService.uploadFile(uploadFile, bucket, objectName);
     }
 }

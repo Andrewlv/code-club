@@ -18,7 +18,6 @@ public class AliStorageAdapter implements StorageAdapter {
 
     @Override
     public void uploadFile(MultipartFile uploadFile, String bucket, String objectName) {
-
     }
 
     @Override
