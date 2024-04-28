@@ -13,7 +13,7 @@ public interface SubjectCategoryDTOConverter {
 
     SubjectCategoryDTOConverter INSTANCE = Mappers.getMapper(SubjectCategoryDTOConverter.class);
 
-    SubjectCategoryBO convertBoToDTO(SubjectCategoryDTO subjectCategoryDTO);
+    SubjectCategoryDTO convertBoToDTO(SubjectCategoryBO subjectCategoryBO);
 
     SubjectCategoryBO convertDTOToBO(SubjectCategoryDTO subjectCategoryDTO);
 
