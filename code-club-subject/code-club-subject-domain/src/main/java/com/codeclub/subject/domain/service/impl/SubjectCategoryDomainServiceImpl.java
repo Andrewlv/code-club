@@ -110,11 +110,11 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
         List<CompletableFuture<Map<Long, List<SubjectLabelBO>>>> completableFutureList = subjectCategoryBOList.stream().map(category ->
                         CompletableFuture.supplyAsync(() -> getSubjectLabelBOList(category), labelThreadPool))
                 .collect(Collectors.toList());
-        completableFutureList.forEach(future->{
+        completableFutureList.forEach(future -> {
             try {
                 Map<Long, List<SubjectLabelBO>> resultMap = future.get();
                 map.putAll(resultMap);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
@@ -141,6 +141,9 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     }
 
     private Map<Long, List<SubjectLabelBO>> getSubjectLabelBOList(SubjectCategoryBO category) {
+        if (log.isInfoEnabled()) {
+            log.info("getSubjectLabelBOList:{}", JSON.toJSONString(category));
+        }
         Map<Long, List<SubjectLabelBO>> labelMap = new HashMap<>();
         SubjectMapping subjectMapping = new SubjectMapping();
         subjectMapping.setCategoryId(category.getId());
