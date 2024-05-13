@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
@@ -104,26 +105,39 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
                     JSON.toJSONString(subjectCategoryList));
         }
         List<SubjectCategoryBO> subjectCategoryBOList = SubjectCategoryConverter.INSTANCE.convertCategoryListToBOList(subjectCategoryList);
-        // 一次性获取标签信息
-        List<FutureTask<Map<Long, List<SubjectLabelBO>>>> futureTaskList = new LinkedList<>();
         // 线程池并发调用
         Map<Long, List<SubjectLabelBO>> map = new HashMap<>();
-        subjectCategoryBOList.forEach(category -> {
-            FutureTask<Map<Long, List<SubjectLabelBO>>> futureTask = new FutureTask<>(() -> getSubjectLabelBOList(category));
-            futureTaskList.add(futureTask);
-            labelThreadPool.submit(futureTask);
-        });
-        for (FutureTask<Map<Long, List<SubjectLabelBO>>> futureTask : futureTaskList) {
-            Map<Long, List<SubjectLabelBO>> resultMap = futureTask.get();
-            if (CollectionUtils.isEmpty(resultMap)) {
-                continue;
+        List<CompletableFuture<Map<Long, List<SubjectLabelBO>>>> completableFutureList = subjectCategoryBOList.stream().map(category ->
+                        CompletableFuture.supplyAsync(() -> getSubjectLabelBOList(category), labelThreadPool))
+                .collect(Collectors.toList());
+        completableFutureList.forEach(future->{
+            try {
+                Map<Long, List<SubjectLabelBO>> resultMap = future.get();
+                map.putAll(resultMap);
+            }catch (Exception e){
+                e.printStackTrace();
             }
-            map.putAll(resultMap);
-        }
+        });
         subjectCategoryBOList.forEach(categoryBO -> {
             categoryBO.setSubjectLabelBOList(map.get(categoryBO.getId()));
         });
         return subjectCategoryBOList;
+
+        // 一次性获取标签信息
+//        List<FutureTask<Map<Long, List<SubjectLabelBO>>>> futureTaskList = new LinkedList<>();
+//
+//        subjectCategoryBOList.forEach(category -> {
+//            FutureTask<Map<Long, List<SubjectLabelBO>>> futureTask = new FutureTask<>(() -> getSubjectLabelBOList(category));
+//            futureTaskList.add(futureTask);
+//            labelThreadPool.submit(futureTask);
+//        });
+//        for (FutureTask<Map<Long, List<SubjectLabelBO>>> futureTask : futureTaskList) {
+//            Map<Long, List<SubjectLabelBO>> resultMap = futureTask.get();
+//            if (CollectionUtils.isEmpty(resultMap)) {
+//                continue;
+//            }
+//            map.putAll(resultMap);
+//        }
     }
 
     private Map<Long, List<SubjectLabelBO>> getSubjectLabelBOList(SubjectCategoryBO category) {
