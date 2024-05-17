@@ -14,6 +14,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -136,6 +138,7 @@ public class SubjectCategoryController {
     @PostMapping("/queryCategoryAndLabel")
     public Result<List<SubjectCategoryDTO>> queryCategoryAndLabel(@RequestBody SubjectCategoryDTO subjectCategoryDTO) {
         try {
+//            Enumeration<String> headerNames = request.getHeaderNames();
             if (log.isInfoEnabled()) {
                 log.info("SubjectCategoryController.queryCategoryAndLabel.dto:{}"
                         , JSON.toJSONString(subjectCategoryDTO));
