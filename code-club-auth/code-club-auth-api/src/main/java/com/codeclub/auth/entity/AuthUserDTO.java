@@ -1,4 +1,4 @@
-package com.codeclub.auth.application.dto;
+package com.codeclub.auth.entity;
 
 import lombok.Data;
 

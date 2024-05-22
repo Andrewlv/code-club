@@ -1,6 +1,6 @@
 package com.codeclub.auth.application.convert;
 
-import com.codeclub.auth.application.dto.AuthUserDTO;
+import com.codeclub.auth.entity.AuthUserDTO;
 import com.codeclub.auth.domain.entity.AuthUserBO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

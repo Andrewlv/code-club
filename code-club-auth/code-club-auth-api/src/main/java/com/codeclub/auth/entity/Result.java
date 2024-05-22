@@ -1,6 +1,5 @@
-package com.codeclub.auth.common.entity;
+package com.codeclub.auth.entity;
 
-import com.codeclub.auth.common.enums.ResultCodeEnum;
 import lombok.Data;
 
 @Data

@@ -3,7 +3,7 @@ package com.codeclub.auth.application.controller;
 import com.alibaba.fastjson.JSON;
 import com.codeclub.auth.application.convert.AuthRoleDTOConverter;
 import com.codeclub.auth.application.dto.AuthRoleDTO;
-import com.codeclub.auth.common.entity.Result;
+import com.codeclub.auth.entity.Result;
 import com.codeclub.auth.domain.entity.AuthRoleBO;
 import com.codeclub.auth.domain.service.AuthRoleDomainService;
 import com.google.common.base.Preconditions;

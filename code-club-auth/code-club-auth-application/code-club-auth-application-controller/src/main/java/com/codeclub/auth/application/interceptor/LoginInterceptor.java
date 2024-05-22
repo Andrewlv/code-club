@@ -1,6 +1,6 @@
-package com.codeclub.subject.application.interceptor;
+package com.codeclub.auth.application.interceptor;
 
-import com.codeclub.subject.application.context.LoginContextHolder;
+import com.codeclub.auth.application.context.LoginContextHolder;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 

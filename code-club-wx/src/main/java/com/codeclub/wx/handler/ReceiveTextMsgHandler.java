@@ -39,7 +39,7 @@ public class ReceiveTextMsgHandler implements WeChatMsgHandler {
         int num = random.nextInt(1000);
         String numKey = redisUtil.buildKey(LOGIN_PREFIX, String.valueOf(num));
         redisUtil.setNx(numKey, fromUserName, 5L, TimeUnit.MINUTES);
-        String numContent = "您当前的验证码是：" + num + "!  5分钟内有效";
+        String numContent = "您当前的验证码是：" + num + "！  5分钟内有效";
         String replyContent = "<xml>\n" +
                 "  <ToUserName><![CDATA[" + fromUserName + "]]></ToUserName>\n" +
                 "  <FromUserName><![CDATA[" + toUserName + "]]></FromUserName>\n" +
