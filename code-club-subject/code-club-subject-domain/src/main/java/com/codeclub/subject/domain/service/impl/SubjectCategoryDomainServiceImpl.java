@@ -6,6 +6,7 @@ import com.codeclub.subject.domain.convert.SubjectCategoryConverter;
 import com.codeclub.subject.domain.entity.SubjectCategoryBO;
 import com.codeclub.subject.domain.entity.SubjectLabelBO;
 import com.codeclub.subject.domain.service.SubjectCategoryDomainService;
+import com.codeclub.subject.domain.util.CacheUtil;
 import com.codeclub.subject.infra.basic.entity.SubjectCategory;
 import com.codeclub.subject.infra.basic.entity.SubjectLabel;
 import com.codeclub.subject.infra.basic.entity.SubjectMapping;
@@ -49,9 +50,8 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     @Resource
     private ThreadPoolExecutor labelThreadPool;
 
-    private Cache<String, String> localCache = CacheBuilder.newBuilder().maximumSize(5000)
-            .expireAfterWrite(10, TimeUnit.SECONDS)
-            .build();
+    @Resource
+    private CacheUtil cacheUtil;
 
     @Override
     public void add(SubjectCategoryBO subjectCategoryBO) {
@@ -104,15 +104,10 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     @Override
     @SneakyThrows
     public List<SubjectCategoryBO> queryCategoryAndLabel(SubjectCategoryBO subjectCategoryBO) {
+        Long id = subjectCategoryBO.getId();
         String cacheKey = "categoryAndLabel" + subjectCategoryBO.getId();
-        String content = localCache.getIfPresent(cacheKey);
-        List<SubjectCategoryBO> subjectCategoryBOS = new LinkedList<>();
-        if (StringUtils.isBlank(content)) {
-            subjectCategoryBOS = getSubjectCategoryBOS(subjectCategoryBO.getId());
-            localCache.put(cacheKey, JSON.toJSONString(subjectCategoryBOS));
-        } else {
-            subjectCategoryBOS = JSON.parseArray(content, SubjectCategoryBO.class);
-        }
+        List<SubjectCategoryBO> subjectCategoryBOS = cacheUtil.getResult(cacheKey, SubjectCategoryBO.class,
+                (key) -> getSubjectCategoryBOS(id));
         return subjectCategoryBOS;
     }
 
