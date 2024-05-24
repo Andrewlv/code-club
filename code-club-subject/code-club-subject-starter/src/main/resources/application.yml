@@ -33,3 +33,8 @@ logging:
 #mybatis-plus:
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+es:
+  cluster:
+    esConfigs[0]:
+      name: 4c433e9c4034
+      nodes: 117.72.45.93:9200
