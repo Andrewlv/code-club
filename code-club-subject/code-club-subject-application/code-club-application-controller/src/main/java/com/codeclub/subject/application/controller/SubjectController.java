@@ -47,6 +47,7 @@ public class SubjectController {
             Preconditions.checkNotNull(subjectInfoDTO.getSubjectDifficult(), "题目难度不能为空");
             Preconditions.checkNotNull(subjectInfoDTO.getSubjectType(), "题目类型不能为空");
             Preconditions.checkNotNull(subjectInfoDTO.getSubjectScore(), "题目分数不能为空");
+            Preconditions.checkNotNull(subjectInfoDTO.getSubjectAnswer(), "题目答案不能为空");
             Preconditions.checkArgument(!CollectionUtils.isEmpty(subjectInfoDTO.getCategoryIds()), "分类id不能为空");
             Preconditions.checkArgument(!CollectionUtils.isEmpty(subjectInfoDTO.getLabelIds()), "标签id不能为空");
             SubjectInfoBO subjectInfoBO = SubjectInfoDTOConverter.INSTANCE

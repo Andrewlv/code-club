@@ -41,7 +41,10 @@ public class SubjectInfoDTO extends PageInfo implements Serializable {
      * 题目解析
      */
     private String subjectParse;
-
+    /**
+     * 题目答案
+     */
+    private String subjectAnswer;
     /**
      * 分类id
      */
