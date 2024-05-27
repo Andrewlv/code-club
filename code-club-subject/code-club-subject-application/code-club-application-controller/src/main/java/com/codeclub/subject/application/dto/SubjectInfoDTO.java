@@ -65,5 +65,10 @@ public class SubjectInfoDTO extends PageInfo implements Serializable {
     private Long labelId;
 
     private List<String> labelNameList;
+
+    /**
+     * 全文检索关键词
+     */
+    private String keyWord;
 }
 
