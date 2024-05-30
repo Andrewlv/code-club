@@ -1,6 +1,7 @@
-package com.codeclub.subject.application.util;
+package com.codeclub.subject.common.util;
 
-import com.codeclub.subject.application.context.LoginContextHolder;
+
+import com.codeclub.subject.common.context.LoginContextHolder;
 
 /**
  * 用户登录util
