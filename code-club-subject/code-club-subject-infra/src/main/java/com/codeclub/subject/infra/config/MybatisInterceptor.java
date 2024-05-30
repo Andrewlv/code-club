@@ -101,10 +101,10 @@ public class MybatisInterceptor implements Interceptor {
                 if ("isDeleted".equals(field.getName())) {
                     field.set(parameter, 0);
                     field.setAccessible(false);
-                } else if ("createBy".equals(field.getName())) {
+                } else if ("createdBy".equals(field.getName())) {
                     field.set(parameter, loginId);
                     field.setAccessible(false);
-                } else if ("createTime".equals(field.getName())) {
+                } else if ("createdTime".equals(field.getName())) {
                     field.set(parameter, new Date());
                     field.setAccessible(false);
                 } else {

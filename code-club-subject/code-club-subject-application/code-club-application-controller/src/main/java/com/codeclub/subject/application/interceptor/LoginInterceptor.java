@@ -19,7 +19,6 @@ public class LoginInterceptor implements HandlerInterceptor {
             LoginContextHolder.set("loginId", loginId);
         }
         return true;
-
     }
 
     @Override

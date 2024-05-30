@@ -4,6 +4,8 @@ import com.codeclub.subject.common.entity.PageResult;
 import com.codeclub.subject.domain.entity.SubjectInfoBO;
 import com.codeclub.subject.infra.basic.entity.SubjectInfoEs;
 
+import java.util.List;
+
 /**
  * 题目领域服务
  */
@@ -37,4 +39,6 @@ public interface SubjectInfoDomainService {
      * @return
      */
     PageResult<SubjectInfoEs> getSubjectPageBySearch(SubjectInfoBO subjectInfoBO);
+
+    List<SubjectInfoBO> getContributeList();
 }

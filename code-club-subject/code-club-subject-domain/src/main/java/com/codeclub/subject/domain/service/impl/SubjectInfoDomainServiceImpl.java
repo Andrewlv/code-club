@@ -4,11 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.codeclub.subject.common.entity.PageResult;
 import com.codeclub.subject.common.enums.IsDeletedFlagEnum;
 import com.codeclub.subject.common.util.IdWorkerUtil;
+import com.codeclub.subject.common.util.LoginUtil;
 import com.codeclub.subject.domain.convert.SubjectInfoConverter;
 import com.codeclub.subject.domain.entity.SubjectInfoBO;
 import com.codeclub.subject.domain.entity.SubjectOptionBO;
 import com.codeclub.subject.domain.handler.subject.SubjectTypeHandler;
 import com.codeclub.subject.domain.handler.subject.SubjectTypeHandlerFactory;
+import com.codeclub.subject.domain.redis.RedisUtil;
 import com.codeclub.subject.domain.service.SubjectInfoDomainService;
 import com.codeclub.subject.infra.basic.entity.SubjectInfo;
 import com.codeclub.subject.infra.basic.entity.SubjectInfoEs;
@@ -18,14 +20,16 @@ import com.codeclub.subject.infra.basic.service.SubjectEsService;
 import com.codeclub.subject.infra.basic.service.SubjectInfoService;
 import com.codeclub.subject.infra.basic.service.SubjectLabelService;
 import com.codeclub.subject.infra.basic.service.SubjectMappingService;
+import com.codeclub.subject.infra.entity.UserInfo;
+import com.codeclub.subject.infra.rpc.UserRpc;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,6 +50,14 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
 
     @Resource
     private SubjectEsService subjectEsService;
+
+    @Resource
+    private RedisUtil redisUtil;
+
+    @Resource
+    private UserRpc userRpc;
+
+    private static final String RANK_KEY = "subject_rank";
 
 
     @Override
@@ -84,6 +96,8 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
         subjectInfoEs.setSubjectName(subjectInfo.getSubjectName());
         subjectInfoEs.setSubjectType(subjectInfo.getSubjectType());
         subjectEsService.insert(subjectInfoEs);
+        // redis放入zadd计入排行榜
+        redisUtil.addScore(RANK_KEY, LoginUtil.getLoginId(), 1);
     }
 
     @Override
@@ -129,6 +143,27 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
         subjectInfoEs.setPageSize(subjectInfoBO.getPageSize());
         subjectInfoEs.setKeyWord(subjectInfoBO.getKeyWord());
         return subjectEsService.querySubjectList(subjectInfoEs);
+    }
+
+    @Override
+    public List<SubjectInfoBO> getContributeList() {
+        Set<ZSetOperations.TypedTuple<String>> typedTuples = redisUtil.rankWithScore(RANK_KEY, 0, 5);
+        if (log.isInfoEnabled()) {
+            log.info("getContributeList.typedTuples:{}", JSON.toJSONString(typedTuples));
+        }
+        if (CollectionUtils.isEmpty(typedTuples)) {
+            return Collections.emptyList();
+        }
+        List<SubjectInfoBO> boList = new LinkedList<>();
+        typedTuples.forEach(rank -> {
+            SubjectInfoBO subjectInfoBO = new SubjectInfoBO();
+            subjectInfoBO.setSubjectCount(rank.getScore().intValue());
+            UserInfo userInfo = userRpc.getUserInfo(rank.getValue());
+            subjectInfoBO.setCreateUser(userInfo.getNickName());
+            subjectInfoBO.setCreateUserAvatar(userInfo.getAvatar());
+            boList.add(subjectInfoBO);
+        });
+        return boList;
     }
 
 }
