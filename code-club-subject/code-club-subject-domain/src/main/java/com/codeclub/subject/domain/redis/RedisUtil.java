@@ -105,4 +105,20 @@ public class RedisUtil {
         Set<ZSetOperations.TypedTuple<String>> set = redisTemplate.opsForZSet().reverseRangeWithScores(key, start, end);
         return set;
     }
+
+    public void putHash(String key, String hashKey, Object hashVal) {
+        redisTemplate.opsForHash().put(key, hashKey, hashKey);
+    }
+
+    public int getHash(String key) {
+        return (int) redisTemplate.opsForValue().get(key);
+    }
+
+    public void increment(String countKey, int count) {
+        redisTemplate.opsForValue().increment(countKey, count);
+    }
+
+    public Integer getInt(String key) {
+        return (Integer) redisTemplate.opsForValue().get(key);
+    }
 }

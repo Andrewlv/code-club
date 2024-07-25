@@ -85,5 +85,15 @@ public class SubjectInfoBO extends PageInfo implements Serializable {
      */
     private Integer subjectCount;
 
+    /**
+     * 当前题目是否被点赞
+     */
+    private Boolean liked;
+
+    /**
+     * 当前题目被点赞数量
+     */
+    private Integer liked_count;
+
 }
 

@@ -12,6 +12,7 @@ import com.codeclub.subject.domain.handler.subject.SubjectTypeHandler;
 import com.codeclub.subject.domain.handler.subject.SubjectTypeHandlerFactory;
 import com.codeclub.subject.domain.redis.RedisUtil;
 import com.codeclub.subject.domain.service.SubjectInfoDomainService;
+import com.codeclub.subject.domain.service.SubjectLikedDomainService;
 import com.codeclub.subject.infra.basic.entity.SubjectInfo;
 import com.codeclub.subject.infra.basic.entity.SubjectInfoEs;
 import com.codeclub.subject.infra.basic.entity.SubjectLabel;
@@ -44,6 +45,9 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
 
     @Resource
     private SubjectLabelService subjectLabelService;
+
+    @Resource
+    private SubjectLikedDomainService subjectLikedDomainService;
 
     @Resource
     private SubjectTypeHandlerFactory subjectTypeHandlerFactory;
@@ -133,6 +137,10 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
         List<SubjectLabel> labelList = subjectLabelService.batchQueryById(labelIdList);
         List<String> labelNameList = labelList.stream().map(SubjectLabel::getLabelName).collect(Collectors.toList());
         bo.setLabelNameList(labelNameList);
+
+        // 题目点赞
+        bo.setLiked(subjectLikedDomainService.isLiked(subjectInfoBO.getId().toString(), LoginUtil.getLoginId()));
+        bo.setLiked_count(subjectLikedDomainService.getLikedCount(subjectInfoBO.getId().toString()));
         return bo;
     }
 

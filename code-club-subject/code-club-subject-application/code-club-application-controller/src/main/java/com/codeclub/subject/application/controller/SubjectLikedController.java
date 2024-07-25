@@ -1,6 +1,7 @@
 package com.codeclub.subject.application.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.codeclub.subject.common.util.LoginUtil;
 import com.google.common.base.Preconditions;
 import com.codeclub.subject.application.convert.SubjectLikedDTOConverter;
 import com.codeclub.subject.application.dto.SubjectLikedDTO;
@@ -38,20 +39,17 @@ public class SubjectLikedController {
             if (log.isInfoEnabled()) {
                 log.info("SubjectLikedController.add.dto:{}", JSON.toJSONString(subjectLikedDTO));
             }
-            Preconditions.checkNotNull(subjectLikedDTO.getId(), "不能为空");
-            Preconditions.checkNotNull(subjectLikedDTO.getSubjectId(), "不能为空");
-            Preconditions.checkNotNull(subjectLikedDTO.getLikeUserId(), "不能为空");
-            Preconditions.checkNotNull(subjectLikedDTO.getStatus(), "不能为空");
-            Preconditions.checkNotNull(subjectLikedDTO.getCreatedBy(), "不能为空");
-            Preconditions.checkNotNull(subjectLikedDTO.getCreatedTime(), "不能为空");
-            Preconditions.checkNotNull(subjectLikedDTO.getUpdateBy(), "不能为空");
-            Preconditions.checkNotNull(subjectLikedDTO.getUpdateTime(), "不能为空");
-            Preconditions.checkNotNull(subjectLikedDTO.getIsDeleted(), "不能为空");
+            Preconditions.checkNotNull(subjectLikedDTO.getSubjectId(), "题目id不能为空");
+            Preconditions.checkNotNull(subjectLikedDTO.getStatus(), "点赞状态不能为空");
+            String loginId = LoginUtil.getLoginId();
+            subjectLikedDTO.setLikeUserId(loginId);
+            Preconditions.checkNotNull(subjectLikedDTO.getLikeUserId(), "点赞人不能为空");
             SubjectLikedBO SubjectLikedBO = SubjectLikedDTOConverter.INSTANCE.convertDTOToBO(subjectLikedDTO);
-            return Result.ok(subjectLikedDomainService.add(SubjectLikedBO));
+            subjectLikedDomainService.add(SubjectLikedBO);
+            return Result.ok(true);
         } catch (Exception e) {
             log.error("SubjectLikedController.register.error:{}", e.getMessage(), e);
-            return Result.fail("新增失败");
+            return Result.fail("新增题目点赞失败");
         }
 
     }

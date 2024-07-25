@@ -85,5 +85,15 @@ public class SubjectInfoDTO extends PageInfo implements Serializable {
      * 全文检索关键词
      */
     private String keyWord;
+
+    /**
+     * 当前题目是否被点赞
+     */
+    private Boolean liked;
+
+    /**
+     * 当前题目被点赞数量
+     */
+    private Integer liked_count;
 }
 
