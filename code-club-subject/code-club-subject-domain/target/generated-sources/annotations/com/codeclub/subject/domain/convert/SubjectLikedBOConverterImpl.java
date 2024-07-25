@@ -6,7 +6,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-25T16:35:50+0800",
+    date = "2024-07-25T18:52:49+0800",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_352 (Amazon.com Inc.)"
 )
 public class SubjectLikedBOConverterImpl implements SubjectLikedBOConverter {
