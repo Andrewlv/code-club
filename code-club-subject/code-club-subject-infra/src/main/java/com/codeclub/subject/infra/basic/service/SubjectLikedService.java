@@ -2,6 +2,8 @@ package com.codeclub.subject.infra.basic.service;
 
 import com.codeclub.subject.infra.basic.entity.SubjectLiked;
 
+import java.util.List;
+
 /**
  *  表服务接口
  *
@@ -47,4 +49,5 @@ public interface SubjectLikedService {
      */
     SubjectLiked queryByCondition(SubjectLiked subjectLiked);
 
+    void batchInsertOrUpdate(List<SubjectLiked> subjectLikedList);
 }

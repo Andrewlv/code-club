@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="code-club-subject-starter" />
+        <module name="code-club-auth-api" />
+        <module name="easy-gen-code-spring-boot-starter" />
+        <module name="code-club-gateway" />
+        <module name="code-club-subject-common" />
+        <module name="code-club-subject-domain" />
+        <module name="code-club-subject-infra" />
+        <module name="code-club-auth-common" />
+        <module name="code-club-wx" />
+        <module name="code-club-auth-application-job" />
+        <module name="code-club-application-job" />
+        <module name="code-club-auth-application-mq" />
+        <module name="code-club-auth-infra" />
+        <module name="dynamic-thread-pool-spring-boot-starter" />
+        <module name="code-club-application-controller" />
+        <module name="code-club-auth-domain" />
+        <module name="code-club-auth-starter" />
+        <module name="code-club-oss" />
+        <module name="code-club-auth-application-controller" />
+        <module name="code-club-gen" />
+        <module name="code-club-application-mq" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="code-club-gen" options="-parameters" />
+      <module name="dynamic-thread-pool" options="-parameters" />
+      <module name="dynamic-thread-pool-spring-boot-starter" options="-parameters" />
+    </option>
+  </component>
+</project>

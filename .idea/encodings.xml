@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-application/code-club-auth-application-controller/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-application/code-club-auth-application-controller/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-application/code-club-auth-application-job/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-application/code-club-auth-application-job/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-application/code-club-auth-application-mq/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-application/code-club-auth-application-mq/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-application/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-infra/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-infra/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/code-club-auth-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-auth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-gen/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-oss/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-oss/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-application/code-club-application-controller/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-application/code-club-application-controller/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-application/code-club-application-job/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-application/code-club-application-job/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-application/code-club-application-mq/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-application/code-club-application-mq/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-infra/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-infra/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-subject/code-club-subject-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-wx/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/code-club-wx/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dynamic-thread-pool/dynamic-thread-pool-spring-boot-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dynamic-thread-pool/dynamic-thread-pool-spring-boot-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dynamic-thread-pool/src/assembly/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dynamic-thread-pool/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dynamic-thread-pool/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

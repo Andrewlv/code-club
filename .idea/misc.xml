@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/code-club-wx/pom.xml" />
+        <option value="$PROJECT_DIR$/code-club-common-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/code-club-auth/pom.xml" />
+        <option value="$PROJECT_DIR$/code-club-auth/code-club-auth-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/code-club-gen/pom.xml" />
+        <option value="$PROJECT_DIR$/code-club-oss/pom.xml" />
+        <option value="$PROJECT_DIR$/code-club-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/code-club-subject/pom.xml" />
+        <option value="$PROJECT_DIR$/dynamic-thread-pool/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="temurin-1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

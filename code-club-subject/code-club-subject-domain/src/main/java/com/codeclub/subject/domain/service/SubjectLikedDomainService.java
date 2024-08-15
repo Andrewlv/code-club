@@ -43,4 +43,8 @@ public interface SubjectLikedDomainService {
      */
     Boolean delete(SubjectLikedBO subjectLikedBO);
 
+    /**
+     * 同步点赞数据
+     */
+    void syncLiked();
 }

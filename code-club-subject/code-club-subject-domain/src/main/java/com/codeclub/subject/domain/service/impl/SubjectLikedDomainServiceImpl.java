@@ -1,5 +1,6 @@
 package com.codeclub.subject.domain.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.codeclub.subject.common.enums.IsDeletedFlagEnum;
 import com.codeclub.subject.common.enums.SubjectLikedStatusEnum;
 import com.codeclub.subject.domain.convert.SubjectLikedBOConverter;
@@ -11,13 +12,18 @@ import com.codeclub.subject.infra.basic.entity.SubjectLiked;
 
 import com.codeclub.subject.infra.basic.service.SubjectLikedService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.MapUtils;
+import org.elasticsearch.common.collect.HppcMaps;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
- * 领域service实现了
+ * 领域service实现类
  *
  * @author Andrewlv
  * @since 2024-07-25 12:21:53
@@ -92,6 +98,31 @@ public class SubjectLikedDomainServiceImpl implements SubjectLikedDomainService 
         subjectLiked.setId(subjectLikedBO.getId());
         subjectLiked.setIsDeleted(IsDeletedFlagEnum.DELETED.getCode());
         return subjectLikedService.update(subjectLiked) > 0;
+    }
+
+    @Override
+    public void syncLiked() {
+        Map<Object, Object> subjectLikedMap = redisUtil.getHashAndDelete(SUBJECT_LIKED_KEY);
+        if (log.isInfoEnabled()) {
+            log.info("syncLiked.subjectLikedMap:{}", JSON.toJSONString(subjectLikedMap));
+        }
+        if (MapUtils.isEmpty(subjectLikedMap)) {
+            return;
+        }
+        // 批量同步到数据库
+        List<SubjectLiked> subjectLikedList = new ArrayList<>();
+        subjectLikedMap.forEach((key, value) -> {
+            SubjectLiked subjectLiked = new SubjectLiked();
+            String[] keyArr = key.toString().split(":");
+            String subjectId = keyArr[0];
+            String likedUser = keyArr[1];
+            subjectLiked.setSubjectId(Long.valueOf(subjectId));
+            subjectLiked.setLikeUserId(likedUser);
+            subjectLiked.setStatus(Integer.valueOf(value.toString()));
+            subjectLiked.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
+            subjectLikedList.add(subjectLiked);
+        });
+        subjectLikedService.batchInsertOrUpdate(subjectLikedList);
     }
 
 }
