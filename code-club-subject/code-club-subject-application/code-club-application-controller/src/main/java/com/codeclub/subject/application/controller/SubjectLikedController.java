@@ -1,6 +1,7 @@
 package com.codeclub.subject.application.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.codeclub.subject.common.entity.PageResult;
 import com.codeclub.subject.common.util.LoginUtil;
 import com.google.common.base.Preconditions;
 import com.codeclub.subject.application.convert.SubjectLikedDTOConverter;
@@ -9,6 +10,7 @@ import com.codeclub.subject.common.entity.Result;
 import com.codeclub.subject.domain.entity.SubjectLikedBO;
 import com.codeclub.subject.domain.service.SubjectLikedDomainService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- *  controller
+ * controller
  *
  * @author Andrewlv
  * @since 2024-07-25 12:21:53
@@ -107,7 +109,29 @@ public class SubjectLikedController {
             log.error("SubjectLikedController.delete.error:{}", e.getMessage(), e);
             return Result.fail("删除信息失败");
         }
+    }
 
+    /**
+     * 分页查询我的点赞列表
+     *
+     * @param subjectLikedDTO
+     * @return
+     */
+    @PostMapping("/getSubjectLikedPage")
+    public Result<PageResult<SubjectLikedDTO>> getSubjectLikedPage(@RequestBody SubjectLikedDTO subjectLikedDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectLikedController.getSubjectLikedPage.dto:{}", JSON.toJSONString(subjectLikedDTO));
+            }
+            SubjectLikedBO subjectLikedBO = SubjectLikedDTOConverter.INSTANCE.convertDTOToBO(subjectLikedDTO);
+            subjectLikedBO.setPageNo(subjectLikedDTO.getPageNo());
+            subjectLikedBO.setPageSize(subjectLikedDTO.getPageSize());
+            PageResult<SubjectLikedBO> boPageResult = subjectLikedDomainService.getSubjectLikedPage(subjectLikedBO);
+            return Result.ok(boPageResult);
+        } catch (Exception e) {
+            log.error("SubjectLikedController.getSubjectLikedPage.error:{}", e.getMessage(), e);
+            return Result.fail("分页查询我的点赞失败");
+        }
     }
 
 }

@@ -1,19 +1,25 @@
 package com.codeclub.subject.domain.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.codeclub.subject.common.entity.PageResult;
 import com.codeclub.subject.common.enums.IsDeletedFlagEnum;
 import com.codeclub.subject.common.enums.SubjectLikedStatusEnum;
+import com.codeclub.subject.common.util.LoginUtil;
 import com.codeclub.subject.domain.convert.SubjectLikedBOConverter;
+import com.codeclub.subject.domain.entity.SubjectInfoBO;
 import com.codeclub.subject.domain.entity.SubjectLikedBO;
 import com.codeclub.subject.domain.redis.RedisUtil;
 import com.codeclub.subject.domain.service.SubjectLikedDomainService;
 
+import com.codeclub.subject.infra.basic.entity.SubjectInfo;
 import com.codeclub.subject.infra.basic.entity.SubjectLiked;
 
+import com.codeclub.subject.infra.basic.service.SubjectInfoService;
 import com.codeclub.subject.infra.basic.service.SubjectLikedService;
+import com.codeclub.subject.infra.basic.service.impl.SubjectInfoServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MapUtils;
-import org.elasticsearch.common.collect.HppcMaps;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,6 +42,9 @@ public class SubjectLikedDomainServiceImpl implements SubjectLikedDomainService 
     private SubjectLikedService subjectLikedService;
 
     @Resource
+    private SubjectInfoService subjectInfoService;
+
+    @Resource
     private RedisUtil redisUtil;
 
     private static final String SUBJECT_LIKED_KEY = "subject.liked";
@@ -43,6 +52,7 @@ public class SubjectLikedDomainServiceImpl implements SubjectLikedDomainService 
     private static final String SUBJECT_LIKED_COUNT_KEY = "subject.liked.count";
 
     private static final String SUBJECT_LIKED_DETAIL_KEY = "subject.liked.detail";
+
 
     @Override
     public void add(SubjectLikedBO subjectLikedBO) {
@@ -123,6 +133,29 @@ public class SubjectLikedDomainServiceImpl implements SubjectLikedDomainService 
             subjectLikedList.add(subjectLiked);
         });
         subjectLikedService.batchInsertOrUpdate(subjectLikedList);
+    }
+
+    @Override
+    public PageResult<SubjectLikedBO> getSubjectLikedPage(SubjectLikedBO subjectLikedBO) {
+        PageResult<SubjectLikedBO> pageResult = new PageResult<>();
+        pageResult.setPageNo(subjectLikedBO.getPageNo());
+        pageResult.setPageSize(subjectLikedBO.getPageSize());
+        int start = (subjectLikedBO.getPageNo() - 1) * subjectLikedBO.getPageSize();
+        SubjectLiked subjectLiked = SubjectLikedBOConverter.INSTANCE.convertBOToEntity(subjectLikedBO);
+        subjectLiked.setLikeUserId(LoginUtil.getLoginId());
+        int count = subjectLikedService.countByCondition(subjectLiked);
+        if (count == 0) {
+            return pageResult;
+        }
+        List<SubjectLiked> subjectLikedList = subjectLikedService.queryPage(subjectLiked, start, subjectLikedBO.getPageSize());
+        List<SubjectLikedBO> subjectLikedBOS = SubjectLikedBOConverter.INSTANCE.convertInfoListToBO(subjectLikedList);
+        subjectLikedBOS.forEach(liked ->{
+            SubjectInfo subjectInfo = subjectInfoService.queryById(liked.getSubjectId());
+            liked.setSubjectName(subjectInfo.getSubjectName());
+        });
+        pageResult.setRecords(subjectLikedBOS);
+        pageResult.setTotal(count);
+        return pageResult;
     }
 
 }

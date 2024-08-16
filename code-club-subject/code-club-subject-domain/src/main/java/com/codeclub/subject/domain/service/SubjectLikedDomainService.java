@@ -1,6 +1,8 @@
 package com.codeclub.subject.domain.service;
 
 
+import com.codeclub.subject.common.entity.PageResult;
+import com.codeclub.subject.domain.entity.SubjectInfoBO;
 import com.codeclub.subject.domain.entity.SubjectLikedBO;
 
 /**
@@ -47,4 +49,6 @@ public interface SubjectLikedDomainService {
      * 同步点赞数据
      */
     void syncLiked();
+
+    PageResult<SubjectLikedBO> getSubjectLikedPage(SubjectLikedBO subjectLikedBO);
 }

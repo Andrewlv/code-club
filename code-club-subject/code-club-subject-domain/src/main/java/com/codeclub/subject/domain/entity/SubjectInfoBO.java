@@ -95,5 +95,15 @@ public class SubjectInfoBO extends PageInfo implements Serializable {
      */
     private Integer liked_count;
 
+    /**
+     * 下一题id
+     */
+    private Long nextSubjectId;
+
+    /**
+     * 上一题id
+     */
+    private Long lastSubjectId;
+
 }
 

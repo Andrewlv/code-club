@@ -3,7 +3,6 @@ package com.codeclub.subject.infra.basic.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.codeclub.subject.infra.basic.entity.SubjectLiked;
-
 import com.codeclub.subject.infra.basic.mapper.SubjectLikedDao;
 import com.codeclub.subject.infra.basic.service.SubjectLikedService;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *  表服务实现类
+ * 表服务实现类
  *
  * @author Andrewlv
  * @since 2024-07-25 12:21:53
@@ -86,8 +85,7 @@ public class SubjectLikedServiceImpl implements SubjectLikedService {
                 .eq(Objects.nonNull(subjectLiked.getCreatedTime()), SubjectLiked::getCreatedTime, subjectLiked.getCreatedTime())
                 .eq(Objects.nonNull(subjectLiked.getUpdateBy()), SubjectLiked::getUpdateBy, subjectLiked.getUpdateBy())
                 .eq(Objects.nonNull(subjectLiked.getUpdateTime()), SubjectLiked::getUpdateTime, subjectLiked.getUpdateTime())
-                .eq(Objects.nonNull(subjectLiked.getIsDeleted()), SubjectLiked::getIsDeleted, subjectLiked.getIsDeleted())
-                ;
+                .eq(Objects.nonNull(subjectLiked.getIsDeleted()), SubjectLiked::getIsDeleted, subjectLiked.getIsDeleted());
         return subjectLikedDao.selectOne(queryWrapper);
 
     }
@@ -95,6 +93,16 @@ public class SubjectLikedServiceImpl implements SubjectLikedService {
     @Override
     public void batchInsertOrUpdate(List<SubjectLiked> subjectLikedList) {
         subjectLikedDao.batchInsertOrUpdate(subjectLikedList);
+    }
+
+    @Override
+    public int countByCondition(SubjectLiked subjectLiked) {
+        return subjectLikedDao.countByCondition(subjectLiked);
+    }
+
+    @Override
+    public List<SubjectLiked> queryPage(SubjectLiked subjectLiked, int start, Integer pageSize) {
+        return subjectLikedDao.queryPage(subjectLiked, start, pageSize);
     }
 
 }

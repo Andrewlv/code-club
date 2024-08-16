@@ -8,9 +8,9 @@ public enum ResultCodeEnum {
     SUCCESS(200, "成功"),
     FAIL(500, "失败");
 
-    private int code;
+    private final int code;
 
-    private String desc;
+    private final String desc;
 
     ResultCodeEnum(int code, String desc) {
         this.code = code;

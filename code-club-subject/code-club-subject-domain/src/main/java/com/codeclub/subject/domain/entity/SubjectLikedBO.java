@@ -1,5 +1,6 @@
 package com.codeclub.subject.domain.entity;
 
+import com.codeclub.subject.common.entity.PageInfo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.util.Date;
  * @since 2024-07-25 12:21:53
  */
 @Data
-public class SubjectLikedBO implements Serializable {
+public class SubjectLikedBO extends PageInfo implements Serializable {
 
     /**
      * 
@@ -58,6 +59,8 @@ public class SubjectLikedBO implements Serializable {
      * 
      */
     private Integer isDeleted;
+
+    private String subjectName;
 
 }
 

@@ -1,5 +1,6 @@
 package com.codeclub.subject.application.dto;
 
+import com.codeclub.subject.common.entity.PageInfo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.util.Date;
  * @since 2024-07-25 12:21:53
  */
 @Data
-public class SubjectLikedDTO implements Serializable {
+public class SubjectLikedDTO extends PageInfo implements Serializable {
 
     /**
      * 
