@@ -193,6 +193,7 @@
         <if test="cursor != null and cursor == 0">
             and a.id &lt; #{subject_id}
         </if>
+        limit 0,1
     </select>
 
     <!--新增所有列-->
