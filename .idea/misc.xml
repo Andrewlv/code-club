@@ -13,10 +13,11 @@
         <option value="$PROJECT_DIR$/code-club-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/code-club-subject/pom.xml" />
         <option value="$PROJECT_DIR$/dynamic-thread-pool/pom.xml" />
+        <option value="$PROJECT_DIR$/code-club-practice/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="temurin-1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="corretto-1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

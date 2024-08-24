@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/code-club.iml" filepath="$PROJECT_DIR$/.idea/code-club.iml" />
+      <module fileurl="file://$PROJECT_DIR$/code-club-common-starter/code-club-common-starter.iml" filepath="$PROJECT_DIR$/code-club-common-starter/code-club-common-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/code-club-gen/code-club-gen.iml" filepath="$PROJECT_DIR$/code-club-gen/code-club-gen.iml" />
     </modules>
   </component>
 </project>

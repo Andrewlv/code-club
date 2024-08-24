@@ -1,4 +1,4 @@
-package com.codeclub.auth.common.redis;
+package com.codeclub.practice.server.config.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -40,4 +40,5 @@ public class RedisConfig {
         jsonRedisSerializer.setObjectMapper(objectMapper);
         return jsonRedisSerializer;
     }
+
 }

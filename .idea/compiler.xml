@@ -15,9 +15,11 @@
         <module name="code-club-subject-domain" />
         <module name="code-club-subject-infra" />
         <module name="code-club-auth-common" />
+        <module name="code-club-practice-api" />
         <module name="code-club-wx" />
         <module name="code-club-auth-application-job" />
         <module name="code-club-application-job" />
+        <module name="code-club-practice-server" />
         <module name="code-club-auth-application-mq" />
         <module name="code-club-auth-infra" />
         <module name="dynamic-thread-pool-spring-boot-starter" />

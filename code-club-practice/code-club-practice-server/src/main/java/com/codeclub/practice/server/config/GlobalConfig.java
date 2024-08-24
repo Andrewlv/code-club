@@ -1,6 +1,6 @@
-package com.codeclub.auth.application.config;
+package com.codeclub.practice.server.config;
 
-import com.codeclub.auth.application.interceptor.LoginInterceptor;
+import com.codeclub.practice.server.config.interceptor.LoginInterceptor;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

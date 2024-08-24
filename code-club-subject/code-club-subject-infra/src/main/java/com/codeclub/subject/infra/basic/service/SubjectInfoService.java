@@ -21,7 +21,6 @@ public interface SubjectInfoService {
     SubjectInfo queryById(Long id);
 
 
-
     /**
      * 新增数据
      *
