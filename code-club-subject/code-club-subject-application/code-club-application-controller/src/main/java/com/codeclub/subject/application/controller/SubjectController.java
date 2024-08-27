@@ -13,11 +13,9 @@ import com.codeclub.subject.infra.basic.entity.SubjectInfoEs;
 import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -32,6 +30,9 @@ public class SubjectController {
 
     @Resource
     private SubjectInfoDomainService subjectInfoDomainService;
+
+    @Resource
+    private RocketMQTemplate rocketMQTemplate;
 
     /**
      * 新增题目
@@ -147,5 +148,16 @@ public class SubjectController {
             log.error("SubjectController.getContributeList.error:{}", e.getMessage(), e);
             return Result.fail("获取贡献榜失败");
         }
+    }
+
+    /**
+     * 测试mq发送
+     *
+     * @return
+     */
+    @RequestMapping("/pushMessage")
+    public Result<Boolean> get(@RequestParam("id") int id) {
+        rocketMQTemplate.convertAndSend("first-topic", "你好,Java旅途" + id);
+        return Result.ok(true);
     }
 }

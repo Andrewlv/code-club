@@ -16,6 +16,7 @@
         <module>code-club-application-controller</module>
         <module>code-club-application-mq</module>
         <module>code-club-application-job</module>
+        <module>code-club-application-mq</module>
     </modules>
 
 </project>
