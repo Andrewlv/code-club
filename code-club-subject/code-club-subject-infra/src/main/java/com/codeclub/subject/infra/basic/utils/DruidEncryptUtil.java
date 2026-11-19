@@ -41,7 +41,12 @@ public class DruidEncryptUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        String encrypt = encrypt("555888ljq");
+        String plainPassword = System.getenv("MYSQL_PASSWORD");
+        if (plainPassword == null || plainPassword.isEmpty()) {
+            System.out.println("Please set the MYSQL_PASSWORD environment variable to encrypt it.");
+            return;
+        }
+        String encrypt = encrypt(plainPassword);
         System.out.println("encrypt: " + encrypt);
     }
 }

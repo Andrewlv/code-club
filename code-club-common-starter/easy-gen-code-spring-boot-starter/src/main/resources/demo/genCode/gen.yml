@@ -5,9 +5,9 @@
 json: genCode/fields.json
 # 1.3 配置数据库信息从表字段中获取数据 (优先级第三)
 #jdbc:
-#  url: jdbc:mysql://119.91.155.174:3306/
+#  url: jdbc:mysql://localhost:3306/
 #  username: root
-#  password: 6666888123
+#  password: ${DB_PASSWORD:root}
 #  dbName: ape
 #  driver: com.mysql.cj.jdbc.Driver
 #  tableName: sys_user

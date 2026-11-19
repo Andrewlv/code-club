@@ -233,6 +233,29 @@ CREATE TABLE `subject_label` (
 INSERT INTO `subject_label` VALUES ('1', 'Redis', '1', '1', null, null, null, null, '0');
 
 -- ----------------------------
+-- Table structure for subject_liked
+-- ----------------------------
+DROP TABLE IF EXISTS `subject_liked`;
+CREATE TABLE `subject_liked`
+(
+    `id`           bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `subject_id`   bigint(20) DEFAULT NULL COMMENT '题目id',
+    `like_user_id` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '点赞用户id',
+    `status`       int(11) DEFAULT NULL COMMENT '点赞状态 1已点赞 0未点赞',
+    `created_by`   varchar(32) CHARACTER SET utf8 DEFAULT NULL COMMENT '创建人',
+    `created_time` datetime DEFAULT NULL COMMENT '创建时间',
+    `update_by`    varchar(32) CHARACTER SET utf8 DEFAULT NULL COMMENT '更新人',
+    `update_time`  datetime DEFAULT NULL COMMENT '更新时间',
+    `is_deleted`   int(11) DEFAULT '0' COMMENT '是否被删除 0未删除 1已删除',
+    PRIMARY KEY (`id`) USING BTREE,
+    UNIQUE KEY `uk_subject_id_like_user_id` (`subject_id`, `like_user_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='题目点赞表';
+
+-- ----------------------------
+-- Records of subject_liked
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for subject_mapping
 -- ----------------------------
 DROP TABLE IF EXISTS `subject_mapping`;

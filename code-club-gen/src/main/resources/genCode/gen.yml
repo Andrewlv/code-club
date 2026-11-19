@@ -9,9 +9,9 @@
 jdbc:
   dbName: code-club
   tableName: subject_liked
-  url: jdbc:mysql://117.72.45.93:3306/
+  url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/
   username: root
-  password: 555888ljq
+  password: ${MYSQL_PASSWORD:root}
   driver: com.mysql.cj.jdbc.Driver
 
 # 使用的模板与生成文件映射给关系
